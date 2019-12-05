@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { handleAnswerQuestion } from '../actions/shared';
+import { handleAddAnswer } from '../actions/questions';
 import { connect } from 'react-redux';
 import Result from './Result';
 
@@ -22,9 +22,13 @@ class Questions extends Component {
 		e.preventDefault();
 
 		const { answer } = this.state;
-		const { dispatch, id } = this.props;
+		const { dispatch, author,  id , authedUser} = this.props;
 
-		dispatch(handleAnswerQuestion(id, answer));
+		dispatch(handleAddAnswer({ 
+			authedUser: authedUser,
+			qid: id,
+			answer: answer 
+		}));
 
 		this.setState({
 			answer: '',
@@ -39,7 +43,7 @@ class Questions extends Component {
 		const { answer, toResult } = this.state;
 
 		if (toResult) {
-			return (<Result id={id} />)
+			return (<Result id={id}/>)
 		}
 
 		return (
@@ -95,6 +99,8 @@ function mapStateToProps({ questions, users, authedUser }, { id }) {
 		question: questions[id],
 		author: users[questions[id].author],
 		id,
+		authedUser,
+		answer
 	}
 }
 

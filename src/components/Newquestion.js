@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Card, Button } from "react-bootstrap";
-import { handleAddQuestion } from "../actions/shared";
+import { handleAddQuestion } from "../actions/questions";
 import { Redirect } from "react-router-dom";
 import Login from './Login';
 
@@ -35,7 +35,7 @@ class newquestion extends Component {
       isSubmitted: true
     });
 
-    dispatch(handleAddQuestion(optionOneText, optionTwoText));
+    dispatch(handleAddQuestion({ optionOneText, optionTwoText }));
   };
 
   render() {

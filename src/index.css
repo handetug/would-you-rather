@@ -22,7 +22,8 @@ a {
 }
 
 .photos {
-  height: 50px;
+  height: 150px;
+  width: 150px;
   border-radius: 25px;
   margin: 10px;
 }
